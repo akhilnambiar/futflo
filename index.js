@@ -42,7 +42,7 @@ app.get('/db', function (request, response) {
 });
 
 app.get('/get_clips', function (request, response) {
-	console.log("testing clips")
+	console.log("testing clips");
 });
 
 app.listen(app.get('port'), function() {
