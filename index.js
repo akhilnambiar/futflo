@@ -41,8 +41,30 @@ app.get('/db', function (request, response) {
   });
 });
 
-app.get('/get_clips', function (request, response) {
+app.get('/get_clips', function (req, res) {
 	console.log("testing clips");
+	url = 'https://streamable.com/soccer';
+
+    // The structure of our request call
+    // The first parameter is our URL
+    // The callback function takes 3 parameters, an error, response status code and the html
+
+    request(url, function(error, response, html){
+
+        // First we'll check to make sure no errors occurred when making the request
+
+        if(!error){
+        	console.log(html);
+            // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
+
+            var $ = cheerio.load(html);
+
+            // Finally, we'll define the variables we're going to capture
+
+            var title, release, rating;
+            var json = { title : "", release : "", rating : ""};
+        }
+    })
 });
 
 app.listen(app.get('port'), function() {
