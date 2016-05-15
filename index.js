@@ -35,11 +35,14 @@ app.get('/db', function (request, response) {
        { console.error(err); response.send("Error " + err); }
       else
        { 
-       	console.log(result);
        	response.render('pages/db', {results: result.rows} ); 
        }
     });
   });
+});
+
+app.get('/get_clips', function (request, response) {
+	console.log("testing clips")
 });
 
 app.listen(app.get('port'), function() {
