@@ -59,7 +59,7 @@ url: An array with the url of the clips
 */
 
 app.get('/get_clips', function (req, res) {
-	url = 'http://www.trollfootball.me/highlights';
+	url = 'https://vid.me/GoonerGroup';
 
     // The structure of our request call
     // The first parameter is our URL
