@@ -2,6 +2,9 @@ var cool = require('cool-ascii-faces');
 var express = require('express');
 var app = express();
 var pg = require('pg');
+var fs = require('fs');
+var request = require('request');
+var cheerio = require('cheerio');
 
 app.set('port', (process.env.PORT || 5000));
 
