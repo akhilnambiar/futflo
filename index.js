@@ -30,6 +30,8 @@ app.get('/times', function(request, response) {
   response.send(result);
 });
 
+//calls for the database
+
 app.get('/db', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM test_table', function(err, result) {
@@ -44,9 +46,20 @@ app.get('/db', function (request, response) {
   });
 });
 
+//getting the clips
+
+/*
+@Return
+
+JSON with the following fields
+
+name: An array with the names of the clips
+url: An array with the url of the clips
+
+*/
+
 app.get('/get_clips', function (req, res) {
-	console.log("testing clips");
-	url = 'https://streamable.com/soccer';
+	url = 'http://www.trollfootball.me/highlights';
 
     // The structure of our request call
     // The first parameter is our URL
@@ -57,10 +70,15 @@ app.get('/get_clips', function (req, res) {
         // First we'll check to make sure no errors occurred when making the request
 
         if(!error){
-        	console.log(html);
             // Next, we'll utilize the cheerio library on the returned html which will essentially give us jQuery functionality
 
             var $ = cheerio.load(html);
+            console.log("...Starting to traverse DOM...")
+            console.log($(html).text());
+            //we are going to find the preview images
+            //we use the unique locator of each of the locators to preview the URL
+
+
 
             // Finally, we'll define the variables we're going to capture
 
