@@ -125,7 +125,7 @@ app.get('/get_clips', function (req, res) {
 							scraped_video_links.push($(link).attr('src'));
 						}
 						else{
-							scraped_video_links.push($(link).attr('src')).concat("?autoplay=1");
+							scraped_video_links.push($(link).attr('src').concat("?autoplay=1"));
 						}
 						items_processed++;
 						console.log(items_processed);
