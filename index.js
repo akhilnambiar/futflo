@@ -121,7 +121,12 @@ app.get('/get_clips', function (req, res) {
 				links = $('iframe'); //jquery get all hyperlinks
 				$(links).each(function(i, link){
 					if ( !($(link).attr('src').indexOf("facebook")>-1) && !($(link).attr('src').indexOf("twitter")>-1)) {
-						scraped_video_links.push($(link).attr('src'));
+						if ($(link).attr('src').indexOf("autoplay")>-1){
+							scraped_video_links.push($(link).attr('src'));
+						}
+						else{
+							scraped_video_links.push($(link).attr('src')).concat("?autoplay=1");
+						}
 						items_processed++;
 						console.log(items_processed);
 					}
