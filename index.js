@@ -5,17 +5,42 @@ var pg = require('pg');
 var fs = require('fs');
 var request = require('request');
 var cheerio = require('cheerio');
+var http = require('http');
 
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views/pages');
+app.set('view engine', 'pug');
 
-app.get('/', function(request, response) {
-  response.render('pages/index');
+app.get('/', function(request, response2) {
+	http.get({
+			//URL for the server
+        	host: 'safe-beach-68837.herokuapp.com',
+        	path: '/get_clips'
+    	},
+    	function(response) {
+        	console.log('this should work hpefulle');
+        	var body = '';
+        	
+        	response.on('data', function(d) {
+            	body += d;
+        	});
+
+
+        	response.on('end', function() {
+
+            	// Data reception is done, do whatever with it!
+            	var parsed = JSON.parse(body);
+            	console.log(parsed);
+            	response2.render('index', { title: 'Hey', message: 'Pay attention to me!', clips: parsed.video_list});
+        	});
+
+
+    	}
+    );
 });
 
 app.get('/cool', function(request, response) {

@@ -10,12 +10,13 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "pg": "4.x",
+    "cheerio": "latest",
+    "cool-ascii-faces": "1.3.3",
     "ejs": "2.3.3",
     "express": "4.13.3",
-    "cool-ascii-faces": "1.3.3",
-    "request": "latest",
-    "cheerio": "latest"
+    "pg": "4.x",
+    "pug": "^2.0.0-beta5",
+    "request": "latest"
   },
   "repository": {
     "type": "git",
@@ -28,4 +29,3 @@
   ],
   "license": "MIT"
 }
-
